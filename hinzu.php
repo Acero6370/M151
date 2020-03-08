@@ -1,7 +1,6 @@
 <?php
 
 include('dbconnector.inc.php');
-session_start();
 $error = $message =  '';
 $erstellt = $inhalt = $prio = $expire = $titel = '';
 
@@ -72,16 +71,23 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
   <body>
     <div class="container">
       <h1>To-Do erstellen</h1>
+      <?php
+      include('dbconnector.inc.php');
+      session_start();
+
+      if (empty($_SESSION['idUsers'])) {
+        echo "You are not authorized!!<br>";
+        exit;
+      } else {
+      ?>
       <h3><a href="index.php">Abmelden</a></h3>
-      <p>
-        Erstellen sie hier ein To-Do.
-      </p>
       <?php
         if(!empty($error)){
           echo "<div class=\"alert alert-danger\" role=\"alert\">" . $error . "</div>";
         } else if (!empty($message)){
           echo "<div class=\"alert alert-success\" role=\"alert\">" . $message . "</div>";
         }
+      }
       ?>
       <form enctype="multipart/form-data" action="" method="post">
       <div class="form-group">

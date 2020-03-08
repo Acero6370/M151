@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && empty($error)){
 	}
 
 	if(empty($error)){
-		$query = "SELECT Benutzername, PasswordHash from user where Benutzername = ? and PasswordHash = password(?)";
+		$query = "SELECT Benutzername, PasswordHash, idUsers from user where Benutzername = ? and PasswordHash = password(?)";
 
 		$stmt = $mysqli->prepare($query);
 		if($stmt===false){
@@ -43,6 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && empty($error)){
 		if($result->num_rows){
 			$row = $result->fetch_assoc();
 				session_start();
+				$_SESSION['idUsers'] = $row['idUsers'];
 				header("Location: hauptseite.php");
 		} else {
 			$error .= "Benutzername oder Passwort sind falsch";
