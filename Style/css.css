@@ -1,0 +1,14 @@
+html {
+    font-family: sans-serif;
+    background-color: #FFF5D4;
+}
+
+body {
+    font-size: large;
+    border: 20px #003300 solid;
+}
+
+body h1, h3 {
+    background-color: #003300;
+    color: #FFFFFF;
+}
